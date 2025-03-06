@@ -1,0 +1,131 @@
+/* Global button styles */
+
+/* Base styles for desktop */
+/* Ensure the search sections container is hidden initially */
+
+.search-container {
+    border: 1px solid grey;
+    padding: 10px;
+    width: 100%; /*was 60%* - amended 31 1 2025 - ensures that the container takes up the full available width of its parent element.Useful in responsive design as it allows the container to adapt to different screen sizes, making sure the layout looks good on both small and large screens.*/
+    margin: 0 auto; /* This centers the div horizontally */
+    max-width: 600px; /* ensures that the container does not stretch beyond 800 pixels, regardless of the screen size. This can help maintain a consistent and readable layout, especially on larger screens.*/    
+}
+
+
+body {
+    font-family: Arial, sans-serif; /* Sets the font for the entire page */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    display: flex; /* Uses flexbox for layout */
+    flex-direction: column; /* Aligns items in a column */
+    align-items: center; /* Centers items horizontally */
+    background-color: #f4f4f4; /* Sets a light grey background color */
+}
+
+h5 {
+    margin: 5px 20px 0 20px; /* Sets margin: 5px top, 20px right, 0 bottom, 20px left */
+    padding: 0; /* Removes padding */
+    text-align: center; /* Centers the text */
+    font-size: 12px;
+}
+
+h6 {
+    margin: 0 20px 5px 20px; /* Sets margin: 0 top, 20px right, 5px bottom, 20px left */
+    padding: 0; /* Removes padding */
+    text-align: center; /* Centers the text */
+    font-size: 10px;
+}
+
+
+label {
+    font-weight: bold; /* Make all labels bold */
+}
+
+button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    width: auto; /* 150px; /* Fixed width for uniform size */
+    white-space: normal; /* Allow text to wrap */
+    text-align: center; /* Center align text */
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #999; /* Dark grey background on hover */
+    color: #000; /* Solid black text on hover */
+    border: 1px solid #000; /* Black border on hover */
+}
+
+
+/* Styles for data display divs */
+#name-and-id-data-display {
+    font-size: 12px; /* Sets the font size for the text inside the div */
+    /*background-color: #f0f8ff; /* Sets a light background color for the header */
+    padding: 10px; /* Adds padding inside the div for better spacing */
+    border-radius: 8px; /* Rounds the corners of the div */
+    margin-top: 20px; /* Adds a top margin for spacing from elements above - such as the results of your search functionality to provide spacing between it and the content above. */
+    cursor: default;
+}
+
+
+#name-and-postcode-data-display {
+    font-size: 12px; /* Sets the font size for the text inside the div */
+    /*background-color: #f0f8ff; /* Sets a light background color for the header */
+    padding: 10px; /* Adds padding inside the div for better spacing */
+    border-radius: 8px; /* Rounds the corners of the div */
+    margin-top: 20px; /* Adds a top margin for spacing from elements above */
+    cursor: default;
+}
+
+/* Global table styles */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures that the borders of the table cells are collapsed into a single border for cleaner lines */
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+/* MEDIA QUERIES */
+/* Media queries for responsive design */
+
+/* Styles for tablets and smaller screens */
+@media (max-width: 768px) {
+    #container {
+        width: 90%;
+    }
+    
+    .search-container-name-id, .search-container-name-postcode {
+        width: 100%;
+    }
+}
+
+/* Styles for mobile devices */
+@media (max-width: 480px) {
+    h5, h6 {
+        font-size: 1rem;
+        margin: 5px 10px;
+        text-align: center; /* Ensure text is centered */
+    }
+    
+    .search-container-name-id, .search-container-name-postcode {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    button {
+        width: 100%; /* Ensure buttons are full-width on smaller screens */
+    }
+}
+

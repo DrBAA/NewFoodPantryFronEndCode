@@ -1,0 +1,27 @@
+.logIn-button {
+    margin-left: 250px; /* added margin to move this button to the right */
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    font-size: 14px;
+    width: auto;
+    white-space: normal; /* Allow text to wrap */
+    text-align: center; /* Center align text */
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+
+#signInForm input {
+    margin-right: 10px;
+    padding: 5px;
+    font-size: 14px;
+    width: 300px; /* Fixed width for uniform size */    
+}
+
+/* Log out button */
+#logOutButton {
+  position: fixed;
+  top: 0;
+  right: 250px;
+  margin: 10px;
+}
