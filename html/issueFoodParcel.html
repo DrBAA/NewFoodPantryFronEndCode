@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETHs FOOD PANTRY EMPLOYEES APP - Issue food parcels</title>
+</head>
+<body>
+    <!-- Issue a food parcel -->
+    <div class="issue-food-parcel-container">
+        <h3>Issue a food parcel to a member if they are eligible</h3>
+        <p><i>You can leave the date and amount issued blank. <br>
+            The system will automatically set today's date as date of issue and 1 food parcel as amount issued. <br>
+            Please note you cannot issue more than 1 food parcel to a person</i></p>
+        <div class="issue-food-parcel">
+            <label for="memberId">Member Id</label>
+            <input type="text" id="memberId" placeholder="Enter Member Id" required><br><br>
+
+            <label for="foodParcelId">Food Parcel Id</label><br>
+            <input type="text" id="foodParcelId" placeholder="Enter Food Parcel Id" required><br><br>
+
+            <label for ="collectionPointId">Collection Point Id</label><br>
+            <input type="text" id="collectionPointId" placeholder="Enter Collection Point Id" required><br><br>
+            <label for="dateIssued">Date Issued (optional) </label><br>
+            <input type="text" id="dateIssued" placeholder="Date Issued"><br><br>
+
+            <label for="amountIssued">Amount Issued (optional) </label><br>
+            <input type="text" id="amountIssued" placeholder="Amount Issued">
+        </div>
+    </div>
+    <div class="issueFoodParcelButton"><br>
+        <button id="issueFoodParcelButton" class="issueFoodParcelButton">Issue Food Parcel</button>
+    </div>  
+</body>
+</html>
