@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISSUE A FOOD PARCEL</title>
+    <link rel="stylesheet" href="../css/Global.css">
+    <script type="module" src="../js/issueFoodParcel.js"></script>
+</head>
+<body>
+    <h2>Issue a Food Parcel</h2>
+    <form id="issueForm">
+        <label for="member_id">Member ID:</label>
+        <input type="text" id="member_id" name="member_id" required><br><br>
+        <label for="food_parcel_id">Food Parcel:</label>
+        <select id="food_parcel_id" name="food_parcel_id" required>
+            <option value="" selected></option> <!-- Blank default option -->
+            <option value="FP02">Halal</option>            
+            <option value="FP01">Normal diet</option>
+            <option value="FP03">Normal diabetic</option>
+            <option value="FP04">Vegan</option>
+            <option value="FP05">Vegetarian</option>
+        </select><br><br>
+        
+        <label for="collection_point_id">Collection Point:</label>
+        <select id="collection_point_id" name="collection_point_id" required>
+            <option value="" selected></option> <!-- Blank default option -->
+            <option value="BCC01">British Heart Foundation, Birmingham City Centre</option>
+            <option value="ERD01">Church of the Saviour, Erdington, Birmingham</option>
+            <option value="DUD02">Good Samaritans, Digbeth, Birmingham</option>  
+            <option value="WAL01">Good Samaritans, Plex, Walsall</option>
+            <option value="WAL02">Swan Bank Church, Town Centre, Walsall</option>       
+        </select><br><br>
+        <label for="date_last_issued">Date Last Issued (optional):</label>
+        <input type="date" id="date_last_issued" name="date_last_issued"><br><br>
+
+        <label for="amount_issued">Amount Issued (optional):</label>
+        <input type="number" id="amount_issued" name="amount_issued"><br><br>
+
+        <button type="submit">Submit</button>
+        <button type="button" onclick="reset()">Reset</button>
+    </form>
+
+    <p id="responseMessage"></p>
+
+</body>
+</html>
