@@ -80,3 +80,17 @@ function initializePageScripts() {
     // CLEAR THE DYNAMICALLY LOADED HTML PAGE
     document.getElementById("contentContainer").innerHTML = ""; // Clears dynamic content
 }
+
+
+// Why this code worked and issued a food parcel
+
+// 1️⃣ Dynamic Page Loading Breaks Event Listeners Since navigation.js was loading issueFoodParcel.html dynamically, the event listener inside issueFoodParcel.js wasn't being reattached when the page changed. JavaScript doesn't automatically apply scripts to newly inserted HTML, which is why the form submission stopped working.
+
+// 2️⃣ Manual Script Injection Restores Functionality By manually reloading issueFoodParcel.js every time issueFoodParcel.html was loaded, we ensured that the event listener properly attaches to the form each time. This prevented the issue where clicking "Issue Food Parcel" would load the page but not trigger the form submission logic.
+
+// adding the below code inside the loadPage() function ensured that issueFoodParcel.js gets reattached every time issueFoodParcel.html is loaded dynamically.
+// Before the fix, the form submission event listener inside issueFoodParcel.js was only added when the full page loaded, meaning that when navigation.js replaced #contentContainer with the issue food parcel form, the listener wasn’t there. Manually reloading the script solved that problem.
+//             script.src = "../js/issueFoodParcel.js";
+//             script.type = "module";
+//             document.body.appendChild(script);
+//             console.log("issueFoodParcel.js reloaded dynamically");
