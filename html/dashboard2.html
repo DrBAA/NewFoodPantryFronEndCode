@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETH'S FOOD PANTRY DASHBOARD</title>
+    <link rel="stylesheet" href="../css/Global.css">
+    <link rel="stylesheet" href="../css/dashboard2.css">    
+    <script type="module" src="../js/navigation.js"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar with Title, Header Text & Logout Button -->
+    <nav class="dashboard-nav">
+        <div class="nav-left">
+            <h2>Beth's Food Pantry Employee's Dashboard</h2>
+            <p>Please select an option from the below panel to see relevant content and perform tasks related to that option.</p>
+            <p>When you select an option, its content will appear on the space to the right of the panel.</p>
+        </div>
+        <button id="logoutBtn">Log Out</button>
+    </nav>
+
+
+    <!-- Sidebar Navigation (Fixed on Left) -->
+    <aside class="sidebar">
+        <button id="checkRegistrationBtn">Check Member Registration</button>
+        <button id="registerMemberBtn">Register a New Member</button>
+        <button id="updateMemberDetailsBtn">Update Member Details</button>
+        <button id="searchByNameIdBtn">Check Eligibility</button>
+        <button id="searchByNamePostcodeBtn">Check Eligibility</button>
+        <button id="issueFoodParcelBtn">Issue a Food Parcel or Other Service</button>
+        <button id="addIncomingStockBtn">Add Incoming Stock</button>
+        <button id="clearContentBtn">Clear Page</button>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div id="contentContainer">
+            <p style="color: gray; font-style: italic; text-align: center;">
+                <br><br><br><br>When you select an option from the left panel, its content will appear here.
+            </p>
+        </div>
+    </main>
+
+</body>
+</html>

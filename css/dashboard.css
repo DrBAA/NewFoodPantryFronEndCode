@@ -1,0 +1,83 @@
+/* General Layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f5f5f5;
+    text-align: left;
+}
+
+/* Heading Styles */
+h2 {
+    color: #333;
+}
+
+p {
+    color: #555;
+}
+
+/* Navigation Button Container */
+nav {
+    display: grid;
+    flex-wrap: wrap; /* Ensures buttons wrap to the next line if needed */
+    grid-template-columns: repeat(3, 1fr); /* Defines 3 buttons per row */
+    justify-content: center; /* Centers buttons */
+    gap: 15px; /* Spacing between buttons */
+    margin-top: 20px;
+}
+
+/* Individual Button Styling */
+nav button {
+    width: 250px; /* Fixed button width */
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff; /* Primary blue color */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+/* Color Assignments */
+#clearContentBtn {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+#registerMemberBtn,
+#issueFoodParcelBtn,
+#updateMemberDetailsBtn,
+#addIncomingStockBtn {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+/* Hover Effect */
+nav button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        align-items: center;
+    }
+
+    nav button {
+        width: 80%; /* Make buttons wider on smaller screens */
+    }
+}
+
+/* Dynamic Content Area */
+#contentContainer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    min-height: 200px;
+}
+
+
