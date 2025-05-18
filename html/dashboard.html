@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETH'S FOOD PANTRY DASHBOARD</title>
+    <link rel="stylesheet" href="../css/Global.css">
+    <link rel="stylesheet" href="../css/dashboard.css">    
+    <script type="module" src="../js/navigation.js"></script>
+</head>
+<body>
+
+    <h2>Welcome to Beth's Food Pantry Employee's Dashboard</h2>
+    <p>Please select an option below to perform the tasks related to that function:</p>
+
+    <!-- Navigation Buttons -->
+    <nav>
+        <button id="checkRegistrationBtn">Check Member Registration</button>
+        <button id="registerMemberBtn">Register a New Member</button>
+        <button id="updateMemberDetailsBtn">Update Member Details</button>
+        <button id="searchByNameIdBtn">Check Eligibility (Search by Name and ID OR Name and Postcode)</button>
+        <button id="searchByNamePostcodeBtn">Check Eligibility (Search by Name and Postcode)</button>
+        <button id="issueFoodParcelBtn">Issue a Service (Food Parcel or Other)</button>
+        <button id="addIncomingStockBtn">Add Incoming Stock</button>
+    </nav>
+
+    <!-- Clear Content Button -->
+    <button id="clearContentBtn">Clear Page</button>
+
+    <!-- Dynamic Content Area -->
+    <div id="contentContainer">
+        <p style="color: gray; font-style: italic; text-align: center;">
+            When you select a function above, it loads the relevant content here.
+        </p>
+    </div>
+
+</body>
+</html>
+
+
