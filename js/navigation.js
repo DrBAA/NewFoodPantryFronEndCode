@@ -31,12 +31,25 @@ document.getElementById("clearContentBtn").addEventListener("click", function() 
 
 
 // Function to fetch and insert new page content dynamically
+// Ensures issueFoodParcel.js runs every time the issue food parcel page is loaded dynamically
+// Prevents form submission failures due to missing event listeners
+// Allows your API request logic to function normally in the dashboard
 function loadPage(pageUrl) {
     fetch(pageUrl)
     .then(response => response.text())
     .then(htmlContent => {
         document.getElementById("contentContainer").innerHTML = htmlContent;
-        initializePageScripts(); // Ensures dynamically loaded content functions properly
+
+        // Ensure issueFoodParcel.js is reloaded when issueFoodParcel.html is loaded dynamically
+        if (pageUrl.includes("issueFoodParcel.html")) {
+            const script = document.createElement("script");
+            script.src = "../js/issueFoodParcel.js";
+            script.type = "module";
+            document.body.appendChild(script);
+            console.log("issueFoodParcel.js reloaded dynamically");
+        }
+
+        initializePageScripts(); // Ensure other event listeners reattach
     })
     .catch(error => console.error("Error loading page:", error));
 }
