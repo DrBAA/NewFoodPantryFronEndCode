@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "sweetalert2": "^11.22.0"
   },
   "devDependencies": {
     "dotenv-webpack": "^8.1.0",
