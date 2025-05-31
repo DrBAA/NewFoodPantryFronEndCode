@@ -45,6 +45,13 @@ document.getElementById("issueForm").addEventListener("submit", function(event) 
     const foodParcelName = foodParcelDescriptions[foodParcelCode] || "Not selected";
     const collectionPointName = collectionPointDescriptions[collectionPointCode] || "Not selected";
 
+    // Check for constraint violation before confirming submission
+    if (amount_issued > 1) {
+        document.getElementById("responseMessage").innerText = "⚠️ Error: Only one food parcel can be issued. Please try again.";
+        document.getElementById("responseMessage").style.color = "red"; // Highlight in red
+        return; // Stop further execution if error is found
+    }
+
     // Confirm details on the form with real descriptions before submitting it
     const confirmation = confirm(
         `Confirm Submission:\n\nMember ID: ${member_id}\n
@@ -78,7 +85,8 @@ document.getElementById("issueForm").addEventListener("submit", function(event) 
         if (data.includes("you cannot issue a food parcel more than once within 7 days")) {
             document.getElementById("responseMessage").innerText = "⚠️ Error: You cannot issue a food parcel more than once within 7 days.";
             document.getElementById("responseMessage").style.color = "red"; // Highlight in red
-        } else {
+        }    
+        else {
             document.getElementById("responseMessage").innerText = data;
 
             // Automatically reset the dropdowns after successful submission
