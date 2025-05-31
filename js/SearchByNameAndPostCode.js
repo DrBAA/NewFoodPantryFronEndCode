@@ -20,6 +20,7 @@ document.getElementById('searchNameOnPostcode').addEventListener('input', functi
 });
 
 function fetchDataByNameAndPostCode() {
+    console.log("fetchDataByNameAndPostCode() function is executing..."); // Debugging log
     const name = document.getElementById('searchNameOnPostcode').value; // retrieves value from the Name input field for postcode search
     const postCode = document.getElementById('searchPostcode').value; // retrieves value from the Postcode input field
 
@@ -101,6 +102,8 @@ function fetchDataByNameAndPostCode() {
         .catch(error => console.error('Error fetching data:', error.message));
 }
 
+window.fetchDataByNameAndPostCode = fetchDataByNameAndPostCode; // Make it globally accessible
+
 // FUNCTION TO CLEAR DATA FROM TABLES AND INPUT FIELDS
 function clearNameAndPostCodeData() {
 
@@ -121,8 +124,6 @@ function clearNameAndPostCodeData() {
 
     // Clear the entire HTML table
     document.getElementById('name-and-postcode-data-display').innerHTML = "";
-
-  
 
 }
 

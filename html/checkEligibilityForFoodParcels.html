@@ -9,56 +9,15 @@
     <link rel="stylesheet" href="../css/Global.css">
     <link rel="stylesheet" href="../css/SearchByNameAndId.css">
     <link rel="stylesheet" href="../css/SearchByNameAndPostcode.css">
-    <link rel="stylesheet" href="../css/SignIn.css">
     <script type="module" src="../js/config.js"></script>
-    <script type="module" src="../js/preLogIn.js"></script>
-    <script type="module" src="../js/logIn.js"></script>
     <script type="module" src="../js/searchByNameAndId.js"></script>
     <script type="module" src="../js/searchByNameAndPostcode.js"></script>    
 </head>
 <body>
-  <!-- Security Section -->
-  <div id="securityCheck" style="display: block;">
-    <p>Please read the details below before attempting to sign in. </p>
-    <H4>SECURITY CHECK</H4>
-    <p>
-      The web address bar at the top should start with https, which means it's a secure page.<br>
-      If it does not, or there is no address bar, you may be about to give away your security details.<br>
-      <strong>DO NOT CONTINUE TO INPUT YOUR DETAILS!</strong> Please contact your manager!
-    </p>
-    <H4>USER NAME AND PASSWORD</H2>
-    <p>
-      Your user name and password is how you identify yourself to the system.<br>
-      If your password has been compromised, you should change it immediately. Please contact your manager for this.<br>
-    </p>
-  </div>
-
-  <!-- Step 1: Create an HTML form for employees to sign in with a username and password -->
-  <!-- Sign-In Section -->
-  <div id="signInSection">
-    <br><h3>Please enter your username and password to sign in</h3>
-    <form id="signInForm" autocomplete="off">
-      <!-- Username input field -->
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required autocomplete="off">
-      <br><br>
-      <!-- Password input field -->
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required autocomplete="off">
-      <br><br>
-    </form>
-    <!-- Sign In button -->    
-    <div>
-      <button id="logIn" class="logIn-button">Sign In</button>
-    </div>
-    <br><h3><a href="#" id="forgotPasswordLink"><i>Forgotten your username or password?</i></h3></a>
-    <p id="forgotPasswordMessage" style="display: none; color: red;">Please contact your manager for help accessing the system.</p>
-  </div>
-
-    <!-- Step 2: Create an interface for employees to search for members --> 
+  <!-- Step 1: Create an interface for employees to search for members --> 
   <!-- Search Sections (initially hidden) -->
-  <div id="search-sections" style="display: none;">  
-    <hr><h5>Use the below to search for a member by name and Id OR name and postcode to check<br>if the member can get a food parcel today or needs to come back another day.<h5>
+  <div id="search-sections" style="display: block;">  
+    <hr><h5>Use the below to search for a member by name and Id OR name and postcode to check<br>if the member can get a food parcel today or needs to come back another day.</h5>
     <h6><br>If the search finds the member, this will display the member's details in a table<br>format showing whether you can issue a food parcel to the member today or not.<br><br>If not, please ask the member to come back on or after the date shown on the table.<p>
     </p>To search for another member or clear the search results, press the "Clear" button to clear the previous details.</p></h6>
 
@@ -67,7 +26,7 @@
         <h3>Search for a Member by Name and ID</h3>
         <p><i>You can add any number of letters from the member's first or last name</i></p>
         <div class="search-container-name-id">
-            <label for="searchName">Name:</label>
+            <label for="searchIdName">Name:</label>
             <input type="text" id="searchIdName" placeholder="Enter First or Last Name" required>
             <label for="searchId">ID:</label>
             <input type="text" id="searchId" placeholder="Enter ID" required>
@@ -101,10 +60,6 @@
       </div>
     <div id="name-and-id-data-display"></div>
     <div id="name-and-postcode-data-display"></div>
-    <!-- Log out button -->    
-    <nav>
-      <button id="logOutButton" class="log-out-button">Log Out</button>
-    </nav> 
   </div>
 </body>
 </html>
