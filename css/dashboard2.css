@@ -92,6 +92,7 @@ body {
 #registerMemberBtn,
 #issueFoodParcelBtn,
 #updateMemberDetailsBtn,
+#issueLaptopBtn,
 #addIncomingStockBtn {
     background-color: #28a745; /* Green */
 }

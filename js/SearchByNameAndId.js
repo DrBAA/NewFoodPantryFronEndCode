@@ -20,8 +20,12 @@ document.getElementById('searchIdName').addEventListener('input', function(event
 });
 
 function fetchDataByNameAndId() {
-  const name = document.getElementById('searchIdName').value; // retrieves value from the Name input field
-  const memberId = document.getElementById('searchId').value; // retrieves value from the ID input field
+    console.log("fetchDataByNameAndId() function is executing..."); // Debugging log
+
+  const name = document.getElementById('searchIdName')?.value; // retrieves value from the Name input field
+  const memberId = document.getElementById('searchId')?.value; // retrieves value from the ID input field
+
+  console.log(`Dynamic values: name=${name}, memberId=${memberId}`);
 
   // Check if both the name and ID fields are filled in correctly
   if (!name || !memberId) {
@@ -38,8 +42,12 @@ function fetchDataByNameAndId() {
 
 //   fetch(`http://localhost:8080/api/${name}/${memberId}`)
   fetch(`${config.BACKEND_URL_FOR_JAVA_API}/api/${name}/${memberId}`)
-      .then(response => response.json())
+      .then(response => {
+        console.log(`API Request Sent: ${config.BACKEND_URL_FOR_JAVA_API}/api/${name}/${memberId}`); // Log the URL        
+        return response.json()
+      })
       .then(data => {
+          console.log("API response received:", data); // Log the API response
           console.log(data); // Log the fetched data for debugging
           if (data.length > 0) {  // Check if data is not empty
               const member = data[0]; // Assuming data is an array, get the first element
@@ -104,7 +112,11 @@ function fetchDataByNameAndId() {
           }
       })
       .catch(error => console.error('Error fetching data:', error.message));
+      console.log("fetchDataByNameAndId function executed");
 }
+
+window.fetchDataByNameAndId = fetchDataByNameAndId; // Make it globally accessible
+
 
 // FUNCTION TO CLEAR DATA FROM TABLES AND INPUT FIELDS
 function clearNameAndIdData() {

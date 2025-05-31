@@ -46,28 +46,11 @@ function loadPage(pageUrl) {
         }
 
         // Ensure relevant search files are reloaded when checkEligibilityForFoodParcels.html is loaded dynamically
+        // Load search functionality scripts AFTER inserting HTML
         if (pageUrl.includes("checkEligibilityForFoodParcels.html")) {
-            const script1 = document.createElement("script");
-            script1.src = "../js/searchByNameAndId.js";
-            script1.type = "module";
-            document.body.appendChild(script1);
-            console.log("searchByNameAndId.js reloaded dynamically");
-            script1.onload = () => {
-                console.log("searchByNameAndId.js has finished loading");
-                fetchDataByNameAndId(); // Manually trigger execution
-            };
-
-            const script2 = document.createElement("script");
-            script2.src = "../js/searchByNameAndPostCode.js";
-            script2.type = "module";
-            document.body.appendChild(script2);
-            console.log("searchByNameAndPostCode.js reloaded dynamically");
-            script2.onload = () => {
-                console.log("searchByNameAndPostCode.js has finished loading");
-                fetchDataByNameAndPostCode(); // Manually trigger execution
-            };            
+            loadScript("../js/searchByNameAndId.js", "searchByNameAndId");
+            loadScript("../js/searchByNameAndPostCode.js", "searchByNameAndPostCode");
         }
-    
         // Delay slightly to ensure elements exist
         setTimeout(() => {
             initializePageScripts();
@@ -166,97 +149,9 @@ function initializePageScripts() {
     }
 
     console.log("Search event listeners reattached dynamically.");
+
+    // CLEAR THE DYNAMICALLY LOADED HTML PAGE
+    // document.getElementById("contentContainer").innerHTML = ""; // Clears dynamic content     
     
 }
-    // CLEAR THE DYNAMICALLY LOADED HTML PAGE
-    // document.getElementById("contentContainer").innerHTML = ""; // Clears dynamic content 
 
-    // Why this code worked and issued a food parcel
-
-// 1️⃣ Dynamic Page Loading Breaks Event Listeners Since navigation.js was loading issueFoodParcel.html dynamically, the event listener inside issueFoodParcel.js wasn't being reattached when the page changed. JavaScript doesn't automatically apply scripts to newly inserted HTML, which is why the form submission stopped working.
-
-// 2️⃣ Manual Script Injection Restores Functionality By manually reloading issueFoodParcel.js every time issueFoodParcel.html was loaded, we ensured that the event listener properly attaches to the form each time. This prevented the issue where clicking "Issue Food Parcel" would load the page but not trigger the form submission logic.
-
-// adding the below code inside the loadPage() function ensured that issueFoodParcel.js gets reattached every time issueFoodParcel.html is loaded dynamically.
-// Before the fix, the form submission event listener inside issueFoodParcel.js was only added when the full page loaded, meaning that when navigation.js replaced #contentContainer with the issue food parcel form, the listener wasn’t there. Manually reloading the script solved that problem.
-//             script.src = "../js/issueFoodParcel.js";
-//             script.type = "module";
-//             document.body.appendChild(script);
-//             console.log("issueFoodParcel.js reloaded dynamically");
-
-// OLD CODE
-
-
-
-
-// WORKING CODE
-// // Function to reinitialize event listeners on dynamically loaded pages
-// function initializePageScripts() {
-//     // Ensure elements from the loaded page are accessible
-//     const searchByNameIdBtn = document.getElementById('searchByNameIdBtn');
-
-//     const searchByNamePostcodeBtn = document.getElementById('searchByNamePostcodeBtn');
-
-//     const issueForm = document.getElementById('issueForm');
-
-//     if (searchByNameIdBtn) {
-//         document.getElementById('searchByNameIdBtn').addEventListener('click', fetchDataByNameAndId);
-//     }
-
-//     if (searchByNamePostcodeBtn) {
-//         document.getElementById('searchByNamePostcodeBtn').addEventListener('click', fetchDataByNameAndPostCode);
-//     }
-
-//     if (issueForm) {
-//         issueForm.addEventListener("submit", function(event) {
-//             event.preventDefault();
-//             console.log("Food parcel issuance form submitted");
-//             // Your food parcel issuance logic will still work dynamically
-//         });
-//     }
-
-//     // CLEAR THE DYNAMICALLY LOADED HTML PAGE
-//     document.getElementById("contentContainer").innerHTML = ""; // Clears dynamic content
-// }
-
-// STILL NOT WORKIGN CODE
-
-// function loadPage(pageUrl) {
-//     fetch(pageUrl)
-//     .then(response => response.text())
-//     .then(htmlContent => {
-//         document.getElementById("contentContainer").innerHTML = htmlContent;
-
-//         // Ensure issueFoodParcel.js is reloaded when issueFoodParcel.html is loaded dynamically
-//         if (pageUrl.includes("issueFoodParcel.html")) {
-//             const script = document.createElement("script");
-//             script.src = "../js/issueFoodParcel.js";
-//             script.type = "module";
-//             document.body.appendChild(script);
-//             console.log("issueFoodParcel.js reloaded dynamically");
-//         }
-
-//         // Ensure relevant search files are reloaded when checkEligibilityForFoodParcels.html is loaded dynamically
-//         if (pageUrl.includes("checkEligibilityForFoodParcels.html")) {
-//             const script1 = document.createElement("script");
-//             script1.src = "../js/searchByNameAndId.js";
-//             script1.type = "module";
-//             script1.onload = function () { // Ensure script loads before initialization
-//                 console.log("searchByNameAndId.js fully loaded");
-//             };
-//             document.body.appendChild(script1);
-            
-//             const script2 = document.createElement("script");
-//             script2.src = "../js/searchByNameAndPostCode.js";
-//             script2.type = "module";
-//             script2.onload = function () { 
-//                 console.log("searchByNameAndPostCode.js fully loaded");
-//                 initializePageScripts(); // Run initialization ONLY after scripts have loaded
-//             };
-//             document.body.appendChild(script2);
-//         } else {
-//             initializePageScripts(); // Run normally for other pages
-//         }
-//     })
-//     .catch(error => console.error("Error loading page:", error));
-// }
