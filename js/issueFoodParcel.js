@@ -45,6 +45,12 @@ document.getElementById("issueForm").addEventListener("submit", function(event) 
     const foodParcelName = foodParcelDescriptions[foodParcelCode] || "Not selected";
     const collectionPointName = collectionPointDescriptions[collectionPointCode] || "Not selected";
 
+    // Check for constraint violation before confirming submission
+    if (amount_issued > 1) {
+        alert ("❌ ERROR: Only one food parcel can be issued to a member at a time.\n Please amend the amount issued to 1 or leave it blank.");
+        return false
+    }
+
     // Confirm details on the form with real descriptions before submitting it
     const confirmation = confirm(
         `Confirm Submission:\n\nMember ID: ${member_id}\n
@@ -67,7 +73,6 @@ document.getElementById("issueForm").addEventListener("submit", function(event) 
     if (date_last_issued) params.append("date_last_issued", date_last_issued);
     if (amount_issued) params.append("amount_issued", amount_issued);
 
-
     // Send the POST (create) request to the Java API using Fetch API. This calls a Stored Procedure on MYSQL database and adds the provided data to the database to issue a food parcel. If you try to issue a food parcel more than once within 7 days, you will get an error message saying "you cannot issue a food parcel more than once within 7 days"
     fetch(`http://localhost:8080/api/issue-food-parcel?${params.toString()}`, {
         method: "POST"
@@ -76,10 +81,19 @@ document.getElementById("issueForm").addEventListener("submit", function(event) 
     .then(data => {
         // Check if the response contains the 7-day restriction error
         if (data.includes("you cannot issue a food parcel more than once within 7 days")) {
-            document.getElementById("responseMessage").innerText = "⚠️ Error: You cannot issue a food parcel more than once within 7 days.";
-            document.getElementById("responseMessage").style.color = "red"; // Highlight in red
-        } else {
-            document.getElementById("responseMessage").innerText = data;
+            alert("❌ ERROR: You cannot issue a food parcel more than once within 7 days.");
+
+            // Automatically reset the dropdowns after the above alert
+            document.getElementById("food_parcel_id").selectedIndex = 0;
+            document.getElementById("collection_point_id").selectedIndex = 0;
+
+            // Optionally clear other fields
+            document.getElementById("member_id").value = "";
+            document.getElementById("date_last_issued").value = "";
+            document.getElementById("amount_issued").value = "";
+        }    
+        else if (data.includes("Food parcel successfully issued")) {
+            alert("✅ SUCCESS: " + data); // Show the success message in an alert
 
             // Automatically reset the dropdowns after successful submission
             document.getElementById("food_parcel_id").selectedIndex = 0;

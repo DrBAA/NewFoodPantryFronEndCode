@@ -12,7 +12,7 @@
     <form id="issueForm">
         <label for="member_id">Member ID:</label>
         <input type="text" id="member_id" name="member_id" required><br><br>
-        <label for="food_parcel_id">Food Parcel:</label>
+        <label for="food_parcel_id">Type of Food Parcel:</label>
         <select id="food_parcel_id" name="food_parcel_id" required>
             <option value="" selected></option> <!-- Blank default option -->
             <option value="FP02">Halal</option>            
@@ -31,11 +31,11 @@
             <option value="WAL01">Good Samaritans, Plex, Walsall</option>
             <option value="WAL02">Swan Bank Church, Town Centre, Walsall</option>       
         </select><br><br>
-        <label for="date_last_issued">Date Last Issued (optional):</label>
+        <label for="date_last_issued">Date Last Issued (<i>optional</i>):</label>
         <input type="date" id="date_last_issued" name="date_last_issued"><br><br>
 
-        <label for="amount_issued">Amount Issued (optional):</label>
-        <input type="number" id="amount_issued" name="amount_issued"><br><br>
+        <label for="amount_issued">Amount Issued (<i>optional</i>):</label>
+        <input type="number" id="amount_issued" name="amount_issued" value="1"><br><br>
 
         <button type="submit">Submit</button>
         <button type="button" onclick="reset()">Reset</button>
