@@ -1,4 +1,4 @@
-document.getElementById("issueForm").addEventListener("submit", function(event) {
+document.getElementById("issueForm").addEventListener("submit", async function(event) {
     event.preventDefault(); // Prevent default form submission
     
     document.getElementById("member_id").focus(); // Bring focus back to the first input after submission
@@ -45,11 +45,57 @@ document.getElementById("issueForm").addEventListener("submit", function(event) 
     const foodParcelName = foodParcelDescriptions[foodParcelCode] || "Not selected";
     const collectionPointName = collectionPointDescriptions[collectionPointCode] || "Not selected";
 
-    // Check for constraint violation before confirming submission
-    if (amount_issued > 1) {
-        alert ("❌ ERROR: Only one food parcel can be issued to a member at a time.\n Please amend the amount issued to 1 or leave it blank.");
-        return false
+    /* 
+    Validation Logic for Food Parcel Issuance
+    
+    This section ensures that a member cannot receive a food parcel under two key conditions:
+    1️⃣ **7-Day Restriction**: Prevents issuing a parcel if the last issue date is within the past 7 days.
+    2️⃣ **Parcel Limit Restriction**: Ensures that only one parcel can be issued at a time.
+
+    The logic executes in strict order:
+    - First, it checks whether the member violates the 7-day issuance restriction.
+    - If that condition is satisfied, an error is triggered, and execution stops.
+    - Otherwise, it proceeds to check the parcel issuance limit.
+    - If the second condition is violated, another error is triggered.
+
+    This prevents unnecessary API calls and ensures validation occurs before submission.
+    */
+
+    try {
+        const response = await fetch(`http://localhost:8080/api/last-issue-date/${member_id}`);
+        const lastIssuedDate = await response.text();
+
+        const isWithin7Days = isIssuedWithin7Days(lastIssuedDate);
+        const exceedsParcelLimit = amount_issued > 1;
+
+        // Fetch last issue date and enforce 7-day restriction before confirming submission 
+        if (isWithin7Days) {
+            alert("❌ ERROR: YOU CANNOT issue a food parcel more than once within 7 days.");
+            return;
+
+        // Check for constraint violation before confirming submission            
+        } else if (exceedsParcelLimit) {
+            alert("❌ ERROR: ONLY ONE food parcel can be issued at a time.\nPlease amend the amount to 1 or leave it blank.");
+            return;
+        }
+    } catch (error) {
+        alert("❌ ERROR: Failed to retrieve last issue date.");
+        return;
     }
+
+
+    // Function to check if the last issue date is within 7 days
+    function isIssuedWithin7Days(lastIssuedDate) {
+        const lastIssued = new Date(lastIssuedDate);
+
+        if (isNaN(lastIssued)) {
+            return false; // Handle cases where the date is invalid
+        }
+
+        const today = new Date();
+        return (today - lastIssued) / (1000 * 60 * 60 * 24) <= 7;
+    }
+
 
     // Confirm details on the form with real descriptions before submitting it
     const confirmation = confirm(
