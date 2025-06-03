@@ -44,8 +44,8 @@ function fetchDataByNameAndPostCode() {
             console.log(data); // Log the fetched data for debugging
             if (data.length > 0) {  // Check if data is not empty
                 const member = data[0]; // Assuming data is an array, get the first element
-                const table = `
-                    <table>
+                const table = 
+                    `<table>
                         <thead>
                             <tr>
                                 <th>Member ID</th>
@@ -86,8 +86,8 @@ function fetchDataByNameAndPostCode() {
                 });
             } else {
                 console.log("No data found returned from the API");
-                document.getElementById('name-and-postcode-data-display').innerHTML = `
-                <p style="color: darkblue;">
+                document.getElementById('name-and-postcode-data-display').innerHTML = 
+                `<p style="color: darkblue;">
                     <b>
                         <span style="color: red; font-size: 24px; position: relative;">
                             <!-- &#x25BC;  Downward triangle symbol -->
