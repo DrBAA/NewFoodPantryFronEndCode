@@ -10,13 +10,26 @@
     border-radius: 5px;
   }
   
-
 #signInForm input {
     margin-right: 10px;
     padding: 5px;
     font-size: 14px;
     width: 300px; /* Fixed width for uniform size */    
 }
+
+/* Reset button */
+#resetLogin {
+    margin-left: 30px; /* Space between Sign In and Reset buttons */
+    padding: 5px 10px;
+    font-size: 14px;
+    width: auto;
+    background-color: #f44336; /* Red color for reset action */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 
 /* Log out button */
 #logOutButton {
@@ -25,3 +38,4 @@
   right: 250px;
   margin: 10px;
 }
+

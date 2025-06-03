@@ -23,7 +23,97 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             document.getElementById('forgotPasswordMessage').style.display = 'none';
         }, 5000); // 5000 milliseconds = 5 seconds
-    });   
+    });
+    
+    // EVENT LISTENER FOR USERNAME INPUT TO SHOW PASSWORD FIELD
+    function validateSignIn() {
+        const usernameInput = document.getElementById('username').value;
+        const passwordInput = document.getElementById('password').value;
+        const passwordMessage = document.getElementById('passwordMessage');
+        const passwordLabel = document.getElementById('passwordLabel');
+        const passwordField = document.getElementById('password');
+        
+        const usernameLabel = document.querySelector("label[for='username']");
+        const usernameMessage = document.querySelector("h3"); // Adjust if needed
+
+        const user = validUsers.find(user => user.username === usernameInput);
+
+        if (!user) {
+            alert('Invalid username. Please try again.');
+            return;
+        }
+
+        // Hide ALL username-related elements
+        document.getElementById('username').style.display = 'none';
+        if (usernameLabel) usernameLabel.style.display = 'none';
+        if (usernameMessage) usernameMessage.style.display = 'none';
+
+        // Show password message and password field
+        passwordMessage.style.display = 'block';
+        passwordLabel.style.display = 'inline';
+        passwordField.style.display = 'inline';
+
+
+        // Focus on the password input field for user convenience
+        passwordField.focus();
+
+        // Validate password if entered
+        if (passwordInput) {
+            if (user.password === passwordInput) {
+                localStorage.setItem('loggedIn', 'true'); // Store login session
+                document.getElementById('search-sections').style.display = 'block';
+                document.getElementById('signInSection').style.display = 'none';
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+    }
+    
+    // EVENT LISTENER FOR RESET BUTTON FUNCTIONALITY
+    document.getElementById('resetLogin').addEventListener('click', function() {
+        // Reset username field and show it again
+        const usernameField = document.getElementById('username');
+        usernameField.value = "";
+        usernameField.style.display = "inline";
+
+        // Reset password field and hide it
+        const passwordField = document.getElementById('password');
+        passwordField.value = "";
+        passwordField.style.display = "none";
+
+        // Reset labels and messages
+        document.getElementById('passwordLabel').style.display = "none";
+        document.getElementById('passwordMessage').style.display = "none";
+        
+        // Restore username label and message if they exist
+        const usernameLabel = document.querySelector("label[for='username']");
+        const usernameMessage = document.querySelector("h3"); // Adjust if needed
+        if (usernameLabel) usernameLabel.style.display = "inline";
+        if (usernameMessage) usernameMessage.style.display = "block";
+    });
+
+    // EVENT LISTENER FOR USERNAME ENTER KEY FUNCTIONALITY
+    document.getElementById('username').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission (if inside a form)
+            document.getElementById('logIn').click(); // Simulates clicking "Sign In"
+        }
+    });
+
+    // EVENT LISTENER FOR PASSWORD ENTER KEY FUNCTIONALITY
+    document.getElementById('password').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission (if inside a form)
+            document.getElementById('logIn').click(); // Simulates clicking "Sign In"
+        }
+    });
+
+    // EVENT LISTENER FOR CLEARING THE PASSWORD
+    document.getElementById('clearPassword').addEventListener('click', function() {
+        document.getElementById('password').value = ""; // Clears the password input
+        document.getElementById('password').focus(); // Moves focus back to the password field
+    });
+
 });
 
 // DUMMY DATA FOR USERNAME AND PASSWORDS

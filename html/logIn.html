@@ -36,20 +36,22 @@
   <!-- Step 1: Create an HTML form for employees to sign in with a username and password -->
   <!-- Sign-In Section -->
   <div id="signInSection">
-    <br><h3>Please enter your username and password to sign in</h3>
+    <br><h3>Please enter your username</h3>
     <form id="signInForm" autocomplete="off">
       <!-- Username input field -->
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required autocomplete="off">
       <br><br>
       <!-- Password input field -->
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required autocomplete="off">
+      <h3 id="passwordMessage" style="display: none;">Please enter your password</h3>
+      <label for="password" id="passwordLabel" style="display: none;">Password:</label>
+      <input type="password" id="password" name="password" required autocomplete="off" style="display: none;">
       <br><br>
     </form>
-    <!-- Sign In button -->    
+    <!-- Sign In button -->
     <div>
       <button id="logIn" class="logIn-button">Sign In</button>
+      <button id="resetLogin">Reset</button>
     </div>
     <br><h3><a href="#" id="forgotPasswordLink"><i>Forgotten your username or password?</i></h3></a>
     <p id="forgotPasswordMessage" style="display: none; color: red;">Please contact your manager for help accessing the system.</p>
