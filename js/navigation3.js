@@ -46,16 +46,30 @@ function loadPage(pageUrl) {
         }
 
         // Ensure relevant search files are reloaded when checkEligibilityForFoodParcels.html is loaded dynamically
-        // Load search functionality scripts AFTER inserting HTML
         if (pageUrl.includes("checkEligibilityForFoodParcels.html")) {
-            loadScript("../js/searchByNameAndId.js", "searchByNameAndId");
-            loadScript("../js/searchByNameAndPostCode.js", "searchByNameAndPostCode");
+            const searchScript1 = document.createElement("script");
+            searchScript1.src = "../js/searchByNameAndId.js";
+            document.body.appendChild(searchScript1);
+
+            const searchScript2 = document.createElement("script");
+            searchScript2.src = "../js/searchByNameAndPostCode.js";
+            document.body.appendChild(searchScript2);
+            
         }
-        // Delay slightly to ensure elements exist
-        setTimeout(() => {
-            initializePageScripts();
-        }, 500);
-        // initializePageScripts(); // Ensure other event listeners reattach
+
+
+        // Ensure relevant search files are reloaded when checkEligibilityForFoodParcels.html is loaded dynamically
+        // Load search functionality scripts AFTER inserting HTML
+
+        // if (pageUrl.includes("checkEligibilityForFoodParcels.html")) {
+        //     loadScript("../js/searchByNameAndId.js", "searchByNameAndId");
+        //     loadScript("../js/searchByNameAndPostCode.js", "searchByNameAndPostCode");
+        // }
+        // // Delay slightly to ensure elements exist
+        // setTimeout(() => {
+        //     initializePageScripts();
+        // }, 500);
+        // // initializePageScripts(); // Ensure other event listeners reattach
     })
     .catch(error => console.error("Error loading page:", error));
 }
