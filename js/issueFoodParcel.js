@@ -51,38 +51,54 @@ document.getElementById("issueForm").addEventListener("submit", async function(e
     This section ensures that a member cannot receive a food parcel under two key conditions:
     1️⃣ **7-Day Restriction**: Prevents issuing a parcel if the last issue date is within the past 7 days.
     2️⃣ **Parcel Limit Restriction**: Ensures that only one parcel can be issued at a time.
+     3 **Stock levels**: Ensures no parcels are issued where there are no remaining stocks.
 
     The logic executes in strict order:
     - First, it checks whether the member violates the 7-day issuance restriction.
     - If that condition is satisfied, an error is triggered, and execution stops.
-    - Otherwise, it proceeds to check the parcel issuance limit.
+    - Second, it proceeds to check the parcel issuance limit.
     - If the second condition is violated, another error is triggered.
-
-    This prevents unnecessary API calls and ensures validation occurs before submission.
+    - Third it checks Food Parcel stock availability before proceeding with issuance  
+    This prevents unnecessary API calls and ensures validation occurs before form submission.
     */
 
     try {
+        // Fetch last issue date
         const response = await fetch(`http://localhost:8080/api/last-issue-date/${member_id}`);
         const lastIssuedDate = await response.text();
 
-        const isWithin7Days = isIssuedWithin7Days(lastIssuedDate);
-        const exceedsParcelLimit = amount_issued > 1;
-
-        // Fetch last issue date and enforce 7-day restriction before confirming submission 
-        if (isWithin7Days) {
+        // // Enforce 7-day restriction before confirming submission 
+        if (isIssuedWithin7Days(lastIssuedDate)) {
             alert("❌ ERROR: YOU CANNOT issue a food parcel more than once within 7 days.");
             return;
+        }
 
         // Check for constraint violation before confirming submission            
-        } else if (exceedsParcelLimit) {
+        if (amount_issued > 1) {
             alert("❌ ERROR: ONLY ONE food parcel can be issued at a time.\nPlease amend the amount to 1 or leave it blank.");
             return;
         }
+
+        // Validation Logic to check Food Parcel stock availability before proceeding with issuance
+        try {  
+        // Fetch stock availability       
+        const stockCheckResponse = await fetch(`http://localhost:8080/api/food-parcel-quantity/${food_parcel_id}`);
+        const stockData = await stockCheckResponse.text();
+        const remainingStock = parseInt(stockData, 10);
+
+            if (remainingStock < amount_issued) {
+                alert("❌ ERROR: Insufficient stock available to issue the requested food parcel.\n     Please ensure there are enough food parcels before attempting to issue.");
+                return;
+            }
+        } catch (error) {
+            alert("❌ ERROR: Failed to retrieve stock availability.");
+            return;
+        }
+
     } catch (error) {
         alert("❌ ERROR: Failed to retrieve last issue date.");
         return;
     }
-
 
     // Function to check if the last issue date is within 7 days
     function isIssuedWithin7Days(lastIssuedDate) {
@@ -137,8 +153,22 @@ document.getElementById("issueForm").addEventListener("submit", async function(e
             document.getElementById("member_id").value = "";
             document.getElementById("date_last_issued").value = "";
             document.getElementById("amount_issued").value = "";
-        }    
-        else if (data.includes("Food parcel successfully issued")) {
+        }
+        // Check if the response contains insufficient stock error
+        else if (data.includes("Insufficient stock available to issue requested food parcel")) {
+            alert("❌ ERROR: Insufficient stock available to issue the requested food parcel.");
+
+            // Automatically reset the dropdowns after the above alert
+            document.getElementById("food_parcel_id").selectedIndex = 0;
+            document.getElementById("collection_point_id").selectedIndex = 0;
+
+            // Optionally clear other fields
+            document.getElementById("member_id").value = "";
+            document.getElementById("date_last_issued").value = "";
+            document.getElementById("amount_issued").value = "";
+        }
+
+        else if (data.includes("Food parcel successfully issued to member ID: " + member_id)) {
             alert("✅ SUCCESS: " + data); // Show the success message in an alert
 
             // Automatically reset the dropdowns after successful submission
