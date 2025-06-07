@@ -59,7 +59,8 @@ document.getElementById("issueForm").addEventListener("submit", async function(e
     - Second, it proceeds to check the parcel issuance limit.
     - If the second condition is violated, another error is triggered.
     - Third it checks Food Parcel stock availability before proceeding with issuance  
-    This prevents unnecessary API calls and ensures validation occurs before form submission.
+      
+    This ensures validation occurs before form submission and stops execution early if any validation fails
     */
 
     try {

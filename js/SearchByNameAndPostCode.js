@@ -69,7 +69,11 @@ function fetchDataByNameAndPostCode() {
                                 <td>${member.date_last_collected_a_food_parcel}</td>
                                 <td>${member.days_since_last_collection}</td>
                                 <td>${member.date_due_for_next_collection}</td>
-                                <td>${member.Issue_a_food_parcel_today_or_Not}</td>
+                                <td class="issue-food-parcel">
+                                ${member.Issue_a_food_parcel_today_or_Not === "YES" ?
+                                `<a href='../html/issueFoodParcel.html' class='issue-food-link'>YES, Issue a food parcel</a>` : 
+                                member.Issue_a_food_parcel_today_or_Not
+                                }</td>
                             </tr>
                         </tbody>
                     </table>`;
