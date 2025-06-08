@@ -4,17 +4,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check user session on page load
     if (localStorage.getItem('loggedIn') === 'true') {
-        document.getElementById('search-sections').style.display = 'block';
         document.getElementById('signInSection').style.display = 'none';
         document.getElementById('securityCheck').style.display = 'none';
     } else {
-        document.getElementById('search-sections').style.display = 'none';
         document.getElementById('signInSection').style.display = 'block';
     }
 
     // ADD EVENT LISTENERS
     document.getElementById('logIn').addEventListener('click', validateSignIn);
-    document.getElementById('logOutButton').addEventListener('click', logOut);
+    document.getElementById('cancelButton').addEventListener('click', cancelButton);
     document.getElementById('forgotPasswordLink').addEventListener('click', function(event) {
         event.preventDefault(); // Prevent the default link behavior
         document.getElementById('forgotPasswordMessage').style.display = 'block';
@@ -61,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (passwordInput) {
             if (user.password === passwordInput) {
                 localStorage.setItem('loggedIn', 'true'); // Store login session
-                document.getElementById('search-sections').style.display = 'block';
+                showHomePage()
                 document.getElementById('signInSection').style.display = 'none';
             } else {
                 alert('Incorrect password. Please try again.');
@@ -131,9 +129,7 @@ function validateSignIn() {
 
     if (user) {
         // Store user session in Local Storage
-        localStorage.setItem('loggedIn', 'true');
-
-        document.getElementById('search-sections').style.display = 'block';
+        localStorage.setItem('loggedIn', 'true')
         document.getElementById('signInSection').style.display = 'none';
         document.getElementById('securityCheck').style.display = 'none';
 
@@ -145,10 +141,12 @@ function validateSignIn() {
     }
 }
 
+function showHomePage() {
+    window.location.href = 'dashboard2.html';  // Redirects to the home page
+}
+
 // FUNCTION TO LOG OUT AND CLEAR USER SESSION
-function logOut() {
-    localStorage.removeItem('loggedIn');
-    document.getElementById('search-sections').style.display = 'none';
+function cancelButton() {
     window.location.href = 'postLogIn.html';  // Redirects to the post login page
 }
 
@@ -207,4 +205,5 @@ function logOut() {
 // }
 // // Event listener for the log-out button
 // document.getElementById('logOutButton').addEventListener('click', logOut);
+
 

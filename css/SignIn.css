@@ -32,8 +32,7 @@
 
 
 /* Log out button */
-#logOutButton {
-  position: fixed;
+#cancelButton {
   top: 0;
   right: 250px;
   margin: 10px;
