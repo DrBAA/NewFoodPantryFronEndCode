@@ -1,4 +1,11 @@
 // AMENDED 20/2/2025 TO STOP INVALIDATING A SESSION ON THE WEB APP AND REDIRECTING THE USER TO THE SIGN IN PAGE
+
+// DUMMY DATA FOR USERNAME AND PASSWORDS
+const validUsers = [
+    { username: "admin1", password: "pass1" },
+    { username: "admin2", password: "pass2" }
+];
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM fully loaded and parsed');
 
@@ -45,11 +52,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('username').style.display = 'none';
         if (usernameLabel) usernameLabel.style.display = 'none';
         if (usernameMessage) usernameMessage.style.display = 'none';
+        document.getElementById('resetLogin').style.display = 'none'; // Hide Reset Username button
 
-        // Show password message and password field
+        // show welcome message after user enters the correct username
+        document.getElementById('welcomeMessage').textContent = `Welcome, ${usernameInput}!`;
+        document.getElementById('welcomeMessage').style.display = 'block';
+
+        // Show password message and password field  
+        document.getElementById('securityCheck').style.display = 'none';      
         passwordMessage.style.display = 'block';
         passwordLabel.style.display = 'inline';
         passwordField.style.display = 'inline';
+        document.getElementById('resetPassword').style.display = 'inline'; // Show Reset Password button
 
 
         // Focus on the password input field for user convenience
@@ -59,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (passwordInput) {
             if (user.password === passwordInput) {
                 localStorage.setItem('loggedIn', 'true'); // Store login session
+                document.getElementById('signInSection').style.display = 'none';                
                 showHomePage()
-                document.getElementById('signInSection').style.display = 'none';
             } else {
                 alert('Incorrect password. Please try again.');
             }
@@ -114,33 +128,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-// DUMMY DATA FOR USERNAME AND PASSWORDS
-const validUsers = [
-    { username: "admin1", password: "pass1" },
-    { username: "admin2", password: "pass2" }
-];
+// FUNCTION TO VALIDATE THE SIGN-IN FORM AND STORE USER SESSION - commented out 10 6 2025 as same function is defined inside the domcontent loaded event but has different content.
+// function validateSignIn() {
+//     const usernameInput = document.getElementById('username').value;
+//     const passwordInput = document.getElementById('password').value;
 
-// FUNCTION TO VALIDATE THE SIGN-IN FORM AND STORE USER SESSION
-function validateSignIn() {
-    const usernameInput = document.getElementById('username').value;
-    const passwordInput = document.getElementById('password').value;
+//     const user = validUsers.find(user => user.username === usernameInput && user.password === passwordInput);
 
-    const user = validUsers.find(user => user.username === usernameInput && user.password === passwordInput);
+//     if (user) {
+//         // Store user session in Local Storage
+//         localStorage.setItem('loggedIn', 'true')
+//         document.getElementById('signInSection').style.display = 'none';
+//         document.getElementById('securityCheck').style.display = 'none';
 
-    if (user) {
-        // Store user session in Local Storage
-        localStorage.setItem('loggedIn', 'true')
-        document.getElementById('signInSection').style.display = 'none';
-        document.getElementById('securityCheck').style.display = 'none';
+//         // Clear the input fields
+//         document.getElementById('username').value = "";
+//         document.getElementById('password').value = "";
+//     } else {
+//         alert('Invalid username or password. Please try again.');
+//     }
+// }
 
-        // Clear the input fields
-        document.getElementById('username').value = "";
-        document.getElementById('password').value = "";
-    } else {
-        alert('Invalid username or password. Please try again.');
-    }
-}
-
+// FUNCTION TO REDIRECT TO THE HOME PAGE
 function showHomePage() {
     window.location.href = 'dashboard2.html';  // Redirects to the home page
 }
@@ -149,61 +158,3 @@ function showHomePage() {
 function cancelButton() {
     window.location.href = 'postLogIn.html';  // Redirects to the post login page
 }
-
-
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     console.log('DOM fully loaded and parsed');
-    
-//     // Prevent back navigation - ADDED 19 2 2025 to ensure users can't navigate back using the browser's back and forward buttons while on the login page - NOT WORKING
-//     history.pushState(null, null, document.URL);
-//     window.addEventListener('popstate', function () {
-//         history.pushState(null, null, document.URL);
-//     });
-
-// });
-
-
-// // DUMMY DATA FOR USERNAME AND PASWORDS
-// const validUsers = [
-//     { username: "admin1", password: "pass1" },
-//     { username: "admin2", password: "pass2" }
-// ];
-
-// // FUNCTION TO VALIDATE THE SIGN-IN FORM
-
-// function validateSignIn() {
-//     const username = document.getElementById('username').value;
-//     const password = document.getElementById('password').value;
-
-//     const user = validUsers.find(user => user.username === username && user.password === password);
-
-//     if (user) {
-//         document.getElementById('search-sections').style.display = 'block';
-//         document.getElementById('signInSection').style.display = 'none';
-
-//         // Clear the input fields
-//         document.getElementById('username').value = "";
-//         document.getElementById('password').value = "";
-
-//     } else {
-//         alert('Invalid username or password. Please try again.');
-//     }
-// }
-
-// // EVENT LISTENERS
-
-// // Event listener for the sign-in button
-// document.getElementById('logIn').addEventListener('click', validateSignIn);
-
-
-// // FUNCTION TO LOG OUT OF THE APP
-// function logOut() {
-//     document.getElementById('search-sections').style.display = 'none';
-//     document.getElementById('signInSection').style.display = 'block';
-// }
-// // Event listener for the log-out button
-// document.getElementById('logOutButton').addEventListener('click', logOut);
-
-

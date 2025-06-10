@@ -30,31 +30,31 @@
 
   <!-- Step 1: Create an HTML form for employees to sign in with a username and password -->
   <!-- Sign-In Section -->
-  <div id="signInSection">
-    <br><h3>Please enter your username</h3>
+<div id="signInSection">
+  <br><h3>Please enter your username</h3>
     <form id="signInForm" autocomplete="off">
-      <!-- Username input field -->
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required autocomplete="off">
+      <!-- Username input field --> <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required autocomplete="off">
+      <br><br> <!-- Reset Button placed next to Username --> <button id="resetLogin">Reset</button>
       <br><br>
       <!-- Password input field -->
+      <h3 id="welcomeMessage" style="display: none;"></h3>
       <h3 id="passwordMessage" style="display: none;">Please enter your password</h3>
       <label for="password" id="passwordLabel" style="display: none;">Password:</label>
       <input type="password" id="password" name="password" required autocomplete="off" style="display: none;">
-      <br><br>
+      <!-- Reset Button placed next to password -->
+      <button id="resetPassword" style="display: none;">Reset</button>
+      <!-- Reset for Password --> <br><br>
     </form>
     <!-- Sign In button -->
     <div>
       <button id="logIn" class="logIn-button">Sign In</button><br>
       <!-- Log out button -->
       <button id="cancelButton" class="cancel-button">Cancel</button> <br>    
-      <button id="resetLogin">Reset</button>
     </div>
     <br><h3><a href="#" id="forgotPasswordLink"><i>Forgotten your username or password?</i></h3></a>
     <p id="forgotPasswordMessage" style="display: none; color: red;">Please contact your manager for help accessing the system.</p>
-  </div>
-
- 
+  </div> 
   </div>
 </body>
 </html>

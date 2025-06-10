@@ -1,0 +1,76 @@
+
+<!--CODE TO GET DATA FROM A MYSQL DATABASE IN JAVA -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETHs FOOD PANTRY WEB APP</title>
+    <link rel="stylesheet" href="../css/Global.css">
+    <link rel="stylesheet" href="../css/SignIn2.css">
+    <script type="module" src="../js/logIn2.js"></script>      
+</head>
+<body>
+  <!-- Security Section -->
+  <div id="securityCheck" style="display: block;">
+        <p style="font-weight: bold;">NOTE: Please read the security notice below before attempting to sign in.
+    </p>
+    <H4>SECURITY CHECK</H4>
+    <p>
+      The web address bar at the top should start with https, which means it's a secure page.<br>
+      If it does not, or there is no address bar, you may be about to give away your security details.<br>
+      <strong>DO NOT CONTINUE TO INPUT YOUR DETAILS!</strong> Please contact your manager!
+    </p>
+    <H4>USER NAME AND PASSWORD</H2>
+    <p>
+      Your user name and password is how you identify yourself to the system.<br>
+      If your password has been compromised, you should change it immediately. Please contact your manager for this.<br>
+    </p>
+  </div>
+
+  <!-- Step 1: Create an HTML form for employees to sign in with a username and password -->
+  <!-- Sign-In Section -->
+<div id="signInSection">
+
+    <h3>Please enter your username</h3>
+    <form id="signInForm" autocomplete="off">
+        <!-- Username Section -->
+        
+        <input type="text" id="username" name="username" required autocomplete="off">
+        <br><br>
+
+        <!-- Sign In Button (Under Username) -->
+        <button id="logIn">Sign In</button>
+        <br><br>
+
+        <!-- Reset & Cancel Buttons (Under Sign In, horizontally aligned) -->
+        <div id="usernameButtons">
+            <button id="resetLogin">Reset</button>
+            <button id="cancelButton">Cancel</button>
+        </div>
+        <br><br>
+
+        <!-- Password Section -->
+        <h3 id="passwordMessage" style="display: none;">Please enter your password</h3>
+        <input type="password" id="password" name="password" required autocomplete="off" style="display: none;">
+        <br><br>
+
+        <!-- Sign In Button (Under Password) -->
+        <button id="passwordLogIn" style="display: none;">Sign In</button>
+        <br><br>
+
+        <!-- Reset & Cancel Buttons (Under Sign In, horizontally aligned) -->
+        <div id="passwordButtons" style="display: none;">
+            <button id="resetPassword">Reset</button>
+            <button id="cancelPassword">Cancel</button>
+        </div>
+    </form>
+
+    <br><h3><a href="#" id="forgotPasswordLink"><i>Forgotten your username or password?</i></a></h3>
+    <p id="forgotPasswordMessage" style="display: none; color: red;">Please contact your manager for help accessing the system.</p>
+</div>
+
+</body>
+</html>

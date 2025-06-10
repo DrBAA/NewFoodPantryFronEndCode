@@ -20,10 +20,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });    
 
+// function showLoginPage() {
+//     document.getElementById('preLogInPage').style.display = 'none';
+//     window.location.href = 'index.html';  // Redirects to the login page
+// }
+
+
 function showLoginPage() {
     document.getElementById('preLogInPage').style.display = 'none';
-    window.location.href = 'logIn.html';  // Redirects to the login page
+    window.location.href = 'logIn2.html';  // Redirects to the login page
 }
+
+// document.getElementById('acceptButton').addEventListener('click', showLoginPage);
 
 
 

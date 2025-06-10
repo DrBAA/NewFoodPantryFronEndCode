@@ -1,0 +1,90 @@
+/* Username Section */
+#username {
+    width: 300px;
+    padding: 5px;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#logIn {
+    width: 310px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#usernameButtons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#resetLogin, #cancelButton {
+    width: 120px;
+    height: 40px;
+    font-size: 14px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Ensure password message appears first */
+#passwordMessage {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Keep Password input on the same line */
+#password {
+    display: inline-block;
+    width: 300px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* Ensure Sign In button appears directly below the password input */
+#passwordLogIn {
+    display: block;
+    margin-top: 15px;
+    width: 310px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Align Reset & Cancel buttons horizontally below the Sign In button */
+#passwordButtons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Style Reset and Cancel buttons */
+#resetPassword, #cancelPassword {
+    width: 120px;
+    height: 40px;
+    font-size: 14px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
