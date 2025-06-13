@@ -104,6 +104,7 @@ function fetchDataByNameAndPostCode() {
             }
         })
         .catch(error => console.error('Error fetching data:', error.message));
+        alert("API server is unreachable!.\nPlease ensure the API server is running");
 }
 
 window.fetchDataByNameAndPostCode = fetchDataByNameAndPostCode; // Make it globally accessible

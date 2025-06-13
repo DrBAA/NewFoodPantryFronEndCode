@@ -43,7 +43,12 @@ function fetchDataByNameAndId() {
 //   fetch(`http://localhost:8080/api/${name}/${memberId}`)
   fetch(`${config.BACKEND_URL_FOR_JAVA_API}/api/${name}/${memberId}`)
       .then(response => {
-        console.log(`API Request Sent: ${config.BACKEND_URL_FOR_JAVA_API}/api/${name}/${memberId}`); // Log the URL        
+        console.log(`API Request Sent: ${config.BACKEND_URL_FOR_JAVA_API}/api/${name}/${memberId}`); // Log the URL
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }     
+
         return response.json()
       })
       .then(data => {
@@ -111,8 +116,12 @@ function fetchDataByNameAndId() {
               </p>`;
           }
       })
-      .catch(error => console.error('Error fetching data:', error.message));
-      console.log("fetchDataByNameAndId function executed");
+      .catch(error => 
+        console.error('Error fetching data:', error.message));
+        console.log("fetchDataByNameAndId function executed");
+        // Display error in modal
+        document.getElementById("error-text").innerText = "❌ ERROR: API server is unreachable!\nPlease ensure the API server is running";
+        document.getElementById("error-modal").style.display = "block";
 }
 
 window.fetchDataByNameAndId = fetchDataByNameAndId; // Make it globally accessible

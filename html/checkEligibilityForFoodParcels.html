@@ -38,6 +38,11 @@
             <span
               id="name-and-Id-warning" style="display:none; color:red;">Enter alphabetical characters in the name section.
             </span>
+            <!-- Error message display -->
+            <div id="error-modal" style="display: none; position: fixed; top: 50%; left: 60%; width: 400px;transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid red;">
+                <p id="error-text"></p>
+                <button onclick="document.getElementById('error-modal').style.display='none'">Close</button>
+            </div>
         </div>
              
 
